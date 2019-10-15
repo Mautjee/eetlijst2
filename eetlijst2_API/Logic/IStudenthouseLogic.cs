@@ -13,7 +13,7 @@ namespace Logic
         QueryFeedback UnsubscibeStudenthouse(int studenthouseID, int CurrentUser);
 
         StudentHouse GetCurrentStudenthouse(int UserID);
-        List<ResidentCredit> residentCredits(int studenthouseID);
+        List<ResidentCredit> AllActiveStudentCredits(int studenthouseID);
 
         QueryFeedback MakeNewStudenthouse(string NameNewStudenthouse);
         List<Activity> GetActivatysStudenthouse(int studenthouseID);
