@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Model;
+using System.Threading.Tasks;
+using Model.ModelOld;
 
 namespace Data.Interfaces
 {
@@ -10,7 +11,7 @@ namespace Data.Interfaces
         User GetbyID(int id);
         QueryFeedback AddUser(User user);
         QueryFeedback UpdateUser(User user);
-        QueryFeedback CheckLogin(User user);
+        Task<User>  Authenticate(User user);
         QueryFeedback AddActivity(Activity activity);
     }
 }

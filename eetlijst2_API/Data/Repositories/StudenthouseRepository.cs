@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Data.Interfaces;
-using Model;
+using Model.ModelOld;
 
 namespace Data.Repositories
 {

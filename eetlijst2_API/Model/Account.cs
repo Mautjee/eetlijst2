@@ -3,22 +3,24 @@ using System.Collections.Generic;
 
 namespace Model
 {
-    public partial class Studenthouse
+    public partial class Account
     {
-        public Studenthouse()
+        public Account()
         {
             AccountActivaty = new HashSet<AccountActivaty>();
             Activaty = new HashSet<Activaty>();
             Credits = new HashSet<Credits>();
-            Question = new HashSet<Question>();
         }
 
-        public int StudenthouseId { get; set; }
-        public string Name { get; set; }
+        public int AccountId { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string MailAdress { get; set; }
 
         public virtual ICollection<AccountActivaty> AccountActivaty { get; set; }
         public virtual ICollection<Activaty> Activaty { get; set; }
         public virtual ICollection<Credits> Credits { get; set; }
-        public virtual ICollection<Question> Question { get; set; }
     }
 }

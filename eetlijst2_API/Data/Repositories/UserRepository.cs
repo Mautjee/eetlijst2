@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Data.Interfaces;
-using Model;
+using Model.ModelOld;
 
 namespace Data.Repositories
 {
@@ -32,9 +33,9 @@ namespace Data.Repositories
             return _userContext.UpdateUser(user);
         }
 
-        public QueryFeedback CheckLogin(User user)
+        public Task<User>  Authenticate(User user)
         {
-            return _userContext.CheckLogin(user);
+            return _userContext.Authenticate(user);
         }
 
         public QueryFeedback AddActivity(Activity activity)

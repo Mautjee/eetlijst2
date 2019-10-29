@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Model
+namespace Model.ModelOld
 {
     public class User
     {
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         public string Username { get; set; }
         
@@ -20,7 +20,7 @@ namespace Model
         public User(string username,string password,string firstname,
             string surname, string email, int userid = 0)
         {
-            UserID = userid;
+            UserId = userid;
             Username = username;
             Firstname = firstname;
             Surname = surname;
@@ -41,6 +41,7 @@ namespace Model
         {
             Password = setpassword;
         }
+        
 
     }
 }

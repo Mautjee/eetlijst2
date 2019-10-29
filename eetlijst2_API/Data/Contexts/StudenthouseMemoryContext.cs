@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Data.Interfaces;
-using Model;
+using Model.ModelOld;
 
 namespace Data.Contexts
 {
@@ -16,8 +16,8 @@ namespace Data.Contexts
 
             if (studenthouses.Count == 0)
             {
-                studenthouses.Add(new StudentHouse() {StudenthouseID = studenthouseID++, Name = "HV NIOS", Residents = listOfResidents });
-                studenthouses.Add(new StudentHouse() { StudenthouseID = studenthouseID++, Name = "Asome Huis" });
+                studenthouses.Add(new StudentHouse() {StudenthouseId = studenthouseID++, Name = "HV NIOS", Residents = listOfResidents });
+                studenthouses.Add(new StudentHouse() { StudenthouseId = studenthouseID++, Name = "Asome Huis" });
             }
            
         }

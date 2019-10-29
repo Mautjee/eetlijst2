@@ -3,11 +3,12 @@ using System.Diagnostics;
 using Factory;
 using Microsoft.AspNetCore.Mvc;
 using Logic;
-using Model;
+using Microsoft.AspNetCore.Authorization;
+using Model.ModelOld;
 
 namespace eetlijst2.Controllers
 {
-    
+    //[Authorize]
     [ApiController]
     [Route("user/[controller]")]
     public class AdminController : ControllerBase

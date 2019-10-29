@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Data.Interfaces;
 using Model;
+using Model.ModelOld;
 
 namespace Data.Contexts
 {
@@ -30,7 +32,7 @@ namespace Data.Contexts
         public User GetbyID(int id)
         {
             IEnumerable<User> g = from User in users
-                where User.UserID == id
+                where User.UserId == id
                 select User;
             return g.ToList()[0];
         }
@@ -48,36 +50,17 @@ namespace Data.Contexts
             throw new System.NotImplementedException();
         }
 
-        public QueryFeedback CheckLogin(User user)
+        public async Task<User> Authenticate(User u)
         {
-            QueryFeedback Data = new QueryFeedback();
 
-            try
-            {
-                IEnumerable<User> g = from U in users
-                    where U.Username == user.Username
-                    select U;
-                User us = g.ToList()[0];
-                
-                if (user.Username == us.Username && user.Password == us.Password)
-                {
-                    Data.Succes = true;
-                    Data.Message = "User is logged in";
-                    return Data;
-                }
-                else
-                {
-                    Data.Succes = false;
-                    Data.Message = "Wrong Username or password";
-                    return Data;
-                }
-            }
-            catch
-            {
-                Data.Succes = false;
-                Data.Message = "Wrong Username or password";
-                return Data;
-            }
+            var user = await Task.Run(() =>
+                users.SingleOrDefault(x => x.Username == u.Username && x.Password == u.Password));
+
+            if (user == null)
+                return null;
+
+            user.Password = null;
+            return user;
         }
 
         public QueryFeedback AddActivity(Activity activity)

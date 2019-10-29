@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Data.Repositories;
-using Model;
+using Model.ModelOld;
 
 namespace Logic
 {
@@ -32,9 +33,9 @@ namespace Logic
             return _userRepository.UpdateUser(user);
         }
 
-        public QueryFeedback CheckLogin(User user)
+        public Task<User>  Authenticate(User user)
         {
-            return _userRepository.CheckLogin(user);
+            return _userRepository.Authenticate(user);
         }
 
         public QueryFeedback AdvanceForRoomate(int[] people, Activity activaty)
@@ -45,7 +46,7 @@ namespace Logic
 
             for (int i = 0; i <= amountOfPeopleToPayInAdvance; i++)
             {
-                activaty.ReceivingUser = people[i];
+                activaty.ReceivingUserId = people[i];
 
                 feedback = _userRepository.AddActivity(activaty);
                 if (!feedback.Succes)
@@ -69,7 +70,7 @@ namespace Logic
             for(int i = 0; i <= amountOfGuests; i++)
             {
                 activaty.Amount = costPerPerson;
-                activaty.ReceivingUser = people[i];
+                activaty.ReceivingUserId = people[i];
                 feedback = _userRepository.AddActivity(activaty);
                 if (!feedback.Succes)
                 {

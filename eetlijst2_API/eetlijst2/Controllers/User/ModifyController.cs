@@ -2,9 +2,11 @@ using System.Threading.Tasks;
 using Factory;
 using Microsoft.AspNetCore.Mvc;
 using Logic;
-using Model;
+using Microsoft.AspNetCore.Authorization;
+using Model.ModelOld;
 namespace eetlijst2.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("user/[controller]")]
     public class ModifyController : ControllerBase
@@ -12,9 +14,10 @@ namespace eetlijst2.Controllers
         private UserLogic _userLogic = UserFactory.useMemoryContext();
 
         [HttpPost]
-        public async Task<ActionResult<QueryFeedback>> PostTodoItem(User loginUser)
+        public  ActionResult<QueryFeedback> PostnewUser(User newUser)
         {
-            return _userLogic.AddUser(loginUser);
+            
+            return _userLogic.AddUser(newUser);
         }
     }
 }
