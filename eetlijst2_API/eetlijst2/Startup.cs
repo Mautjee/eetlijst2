@@ -17,16 +17,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Model;
 
 namespace eetlijst2
 {
     public class Startup
-    {
-        private static string db = "sqlserver";
+    { 
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration; 
         }
 
         public IConfiguration Configuration { get; }
@@ -37,7 +37,8 @@ namespace eetlijst2
             // Je voegt de database toe (de context)
             services.AddDbContext<mauro_sqlContext>(options =>
             {
-                switch (db)
+                DatabaseConfiguration db = Configuration.GetValue<DatabaseConfiguration>("Database");
+                switch (db.Provider)
                 {
                     case "inmemory":
                         // in memory
@@ -45,7 +46,7 @@ namespace eetlijst2
                         break;
                     case "sqlserver":
                         // via sqlserver
-                        options.UseSqlServer(Configuration.GetConnectionString("EetlijstConnectionString"));
+                        options.UseSqlServer(db.ConnectionString);
                         break;
                     default:
                         break;
@@ -56,6 +57,9 @@ namespace eetlijst2
             // Je mapt eigenlijk de interfaces tegen de implementaties aan. (om het net te doen)
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountLogic, AccountLogic>();
+
+
+
             services.AddControllers();
         }
 
