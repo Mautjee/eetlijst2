@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Data.Interfaces;
-using Model.ModelOld;
+using Model;
 
 namespace Data.Repositories
 {
@@ -13,17 +13,17 @@ namespace Data.Repositories
             _studenthuisContext = studentenhousecontext;
         }
         
-        public List<StudentHouse> GetallStudenthouses()
+        public List<Studenthouse> GetallStudenthouses()
         {
             return _studenthuisContext.GetallStudenthouses();
         }
 
-        public StudentHouse GetAllResedens(int studenthuisId)
+        public Studenthouse GetAllResedens(int studenthuisId)
         {
             return _studenthuisContext.GetAllResedens(studenthuisId);
         }
 
-        public List<ResidentCredit> AllActiveStudentCredits(int studenthouseID)
+        public List<Credits> AllActiveStudentCredits(int studenthouseID)
         {
             return _studenthuisContext.AllActiveStudentCredits(studenthouseID);
         }
@@ -33,12 +33,12 @@ namespace Data.Repositories
             return _studenthuisContext.AddResident(userID, studenthouseID);
         }
 
-        public bool DeleteResident(User user)
+        public bool DeleteResident(Account user)
         {
             return _studenthuisContext.DeleteResident(user);
         }
 
-        public StudentHouse GetCurrentStudenthouse(int userID)
+        public Studenthouse GetCurrentStudenthouse(int userID)
         {
             return _studenthuisContext.GetCurrentStudenthouse(userID);
         }
@@ -48,7 +48,7 @@ namespace Data.Repositories
             return _studenthuisContext.MakeNewStudententhouse(nameNewStudenthouse);
         }
 
-        public List<Activity> GetListAtivityStudenthouse(int studenthouseID)
+        public List<Activaty> GetListAtivityStudenthouse(int studenthouseID)
         {
             return _studenthuisContext.GetListAtivityStudenthouse(studenthouseID);
         }
@@ -63,7 +63,7 @@ namespace Data.Repositories
             return _studenthuisContext.AddQuestionWithStudenthouse(studenthouseID, theQuestion);
         }
 
-        public StudentHouse GetStudenthouseIDFromStudenthouseName(string studenthouseName)
+        public Studenthouse GetStudenthouseIDFromStudenthouseName(string studenthouseName)
         {
             return _studenthuisContext.GetStudenthouseIDFromStudenthouseName(studenthouseName);
         }
@@ -73,7 +73,7 @@ namespace Data.Repositories
             return _studenthuisContext.CheckAnswer(studetnhouseID, theAnswer);
         }
 
-        public ResidentCredit CheckCredits(int studenthouseID, int currentUserID)
+        public Credits CheckCredits(int studenthouseID, int currentUserID)
         {
             return _studenthuisContext.CheckCredits(studenthouseID, currentUserID);
         }

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Model.ModelOld
+namespace Model
 {
     public class QueryFeedback
     {

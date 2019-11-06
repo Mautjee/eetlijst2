@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Model;
 
-namespace Logic
+
+namespace Data.Interfaces
 {
-    public interface IAccountLogic
+    public interface IAccountRepository
     {
 
         List<Account> GetAllAccounts();
@@ -13,7 +14,6 @@ namespace Logic
         QueryFeedback AddAccount(Account account);
         QueryFeedback UpdateAccount(Account account);
         Task<Account> Authenticate(Account account);
-        QueryFeedback AdvanceForRoomate(int[] people, Activaty activaty);
-        QueryFeedback CookForRoommates(int[] people, Activaty activaty);
+        QueryFeedback AddActivity(Activaty activity);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Model.ModelOld;
 using Data;
 using Data.Repositories;
+using Model;
 
 namespace Logic
 {
@@ -30,27 +30,27 @@ namespace Logic
             return _studenthouseRepository.CheckAnswer(studenthouseID, TheAnswer);
         }
 
-        public bool DeleteResident(User user)
+        public bool DeleteResident(Account user)
         {
             return _studenthouseRepository.DeleteResident(user);
         }
 
-        public List<Activity> GetActivatysStudenthouse(int studenthouseID)
+        public List<Activaty> GetActivatysStudenthouse(int studenthouseID)
         {
             return _studenthouseRepository.GetListAtivityStudenthouse(studenthouseID);
         }
 
-        public StudentHouse GetallResidents(int studenthouseID)
+        public Studenthouse GetallResidents(int studenthouseID)
         {
             return _studenthouseRepository.GetAllResedens(studenthouseID);
         }
 
-        public List<StudentHouse> GetallStudenthouses()
+        public List<Studenthouse> GetallStudenthouses()
         {
             return _studenthouseRepository.GetallStudenthouses();
         }
 
-        public StudentHouse GetCurrentStudenthouse(int UserID)
+        public Studenthouse GetCurrentStudenthouse(int UserID)
         {
             return _studenthouseRepository.GetCurrentStudenthouse(UserID);
         }
@@ -60,7 +60,7 @@ namespace Logic
             return _studenthouseRepository.GetQuestionStudenthouse(studenthouseID);
         }
 
-        public StudentHouse GetStudenthouseIDFromStudenthouseName(string StudenthouseN)
+        public Studenthouse GetStudenthouseIDFromStudenthouseName(string StudenthouseN)
         {
             return _studenthouseRepository.GetStudenthouseIDFromStudenthouseName(StudenthouseN);
         }
@@ -70,7 +70,7 @@ namespace Logic
             return _studenthouseRepository.MakeNewStudententhouse(NameNewStudenthouse);
         }
 
-        public List<ResidentCredit> AllActiveStudentCredits(int studenthouseID)
+        public List<Credits> AllActiveStudentCredits(int studenthouseID)
         {
             return _studenthouseRepository.AllActiveStudentCredits(studenthouseID);
         }
@@ -78,7 +78,7 @@ namespace Logic
         public QueryFeedback UnsubscibeStudenthouse(int studenthouseID, int CurrentUser)
         {
             QueryFeedback feedback = new QueryFeedback();
-            ResidentCredit residentCredit = _studenthouseRepository.CheckCredits(studenthouseID, CurrentUser);
+            Credits residentCredit = _studenthouseRepository.CheckCredits(studenthouseID, CurrentUser);
 
             if(residentCredit != null)
             {
