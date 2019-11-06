@@ -37,8 +37,9 @@ namespace eetlijst2
             // Je voegt de database toe (de context)
             services.AddDbContext<mauro_sqlContext>(options =>
             {
-                DatabaseConfiguration db = Configuration.GetValue<DatabaseConfiguration>("Database");
-                switch (db.Provider)
+  
+
+                switch (Configuration.GetSection("DatabaseConfiguration").GetChildren().FirstOrDefault(d => d.Key.Equals("Provider")).Value)
                 {
                     case "inmemory":
                         // in memory
@@ -46,7 +47,7 @@ namespace eetlijst2
                         break;
                     case "sqlserver":
                         // via sqlserver
-                        options.UseSqlServer(db.ConnectionString);
+                        options.UseSqlServer(Configuration.GetSection("DatabaseConfiguration").GetChildren().FirstOrDefault(d => d.Key.Equals("ConnectionString")).Value);
                         break;
                     default:
                         break;
