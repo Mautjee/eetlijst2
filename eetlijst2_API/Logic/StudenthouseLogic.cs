@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Data;
+using Data.Interfaces;
 using Data.Repositories;
 using Model;
 
@@ -8,16 +9,16 @@ namespace Logic
 {
     public class StudenthouseLogic : IStudenthouseLogic
     {
-        private StudenthouseRepository _studenthouseRepository;
+        private readonly IStudenthouseContext _studenthouseRepository;
         
-        public StudenthouseLogic(StudenthouseRepository studenthouseRepository)
+        public StudenthouseLogic(IStudenthouseContext studenthouseRepository)
         {
             _studenthouseRepository = studenthouseRepository;
         }
 
-        public QueryFeedback AddQuestionStudenthouse(int studenthouseID, Question question)
+        public QueryFeedback AddQuestionStudenthouse(Question question)
         {
-            return _studenthouseRepository.AddQuestionWithStudenthouse(studenthouseID, question);
+            return _studenthouseRepository.AddQuestionWithStudenthouse(question);
         }
 
         public QueryFeedback AddResident(int userID, int studenthouseID)
@@ -50,7 +51,7 @@ namespace Logic
             return _studenthouseRepository.GetallStudenthouses();
         }
 
-        public Studenthouse GetCurrentStudenthouse(int UserID)
+        public VwActiveStudenthouseAccount GetCurrentStudenthouse(int UserID)
         {
             return _studenthouseRepository.GetCurrentStudenthouse(UserID);
         }
@@ -70,7 +71,7 @@ namespace Logic
             return _studenthouseRepository.MakeNewStudententhouse(NameNewStudenthouse);
         }
 
-        public List<Credits> AllActiveStudentCredits(int studenthouseID)
+        public List<VwActiveStudenthouseAccount> AllActiveStudentCredits(int studenthouseID)
         {
             return _studenthouseRepository.AllActiveStudentCredits(studenthouseID);
         }

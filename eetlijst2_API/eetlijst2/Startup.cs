@@ -54,11 +54,15 @@ namespace eetlijst2
                 }
             });
 
+
+
             // Je voegt de services toe aan de services collectie voor dependency injection
             // Je mapt eigenlijk de interfaces tegen de implementaties aan. (om het net te doen)
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountLogic, AccountLogic>();
 
+            services.AddTransient<IStudenthouseLogic, StudenthouseLogic>();
+            services.AddTransient<IStudenthouseContext, StudenthouseRepository>();
 
 
             services.AddControllers();

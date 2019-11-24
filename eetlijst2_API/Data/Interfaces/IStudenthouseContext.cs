@@ -7,14 +7,14 @@ namespace Data.Interfaces
     {
         List<Studenthouse> GetallStudenthouses();
         Studenthouse GetAllResedens(int studenthuisId);
-        List<Credits> AllActiveStudentCredits(int studenthouseID);
+        List<VwActiveStudenthouseAccount> AllActiveStudentCredits(int studenthouseID);
         QueryFeedback AddResident(int userID, int studenthouseID);
         bool DeleteResident(Account user);
-        Studenthouse GetCurrentStudenthouse(int userID);
+        VwActiveStudenthouseAccount GetCurrentStudenthouse(int userID);
         QueryFeedback MakeNewStudententhouse(string nameNewStudenthouse);
         List<Activaty> GetListAtivityStudenthouse(int studenthouseID);
         Question GetQuestionStudenthouse(int studenthouseID);
-        QueryFeedback AddQuestionWithStudenthouse(int studenthouseID, Question theQuestion);
+        QueryFeedback AddQuestionWithStudenthouse( Question theQuestion);
         Studenthouse GetStudenthouseIDFromStudenthouseName(string studenthouseName);
         QueryFeedback CheckAnswer(int studetnhouseID, string theAnswer);
         Credits CheckCredits(int studenthouseID,int currentUserID);
