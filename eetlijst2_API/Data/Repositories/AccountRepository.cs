@@ -59,7 +59,9 @@ namespace Data.Repositories
 
         public async Task<Account> Authenticate(Account account)
         {
-            var loggedInAccount = await Task.Run(() => _mauroContext.Account.Where(s => s.Username == account.Username & s.Password == account.Password).FirstOrDefault());
+            var loggedInAccount = await Task.Run(() => 
+                _mauroContext.Account.FirstOrDefault(s => s.Username == account.Username 
+                                                          & s.Password == account.Password));
 
             if (loggedInAccount == null)
                 return null;
