@@ -19,7 +19,7 @@ namespace eetlijst2.Services
         
         public LoginService(IOptions<JwtConfiguration> jwtConfig,IAccountLogic accountLogic)
         { 
-//            _jwtConfig = new JwtConfiguration()
+                //            _jwtConfig = new JwtConfiguration()
                 //            {
                 //                Issuer = "Mauro",
                 //                SecretKey = "Eetlijst2"

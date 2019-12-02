@@ -11,20 +11,7 @@ class App extends React.Component {
   render(){
   return (  
     <Router>    
-      <div className="container">    
-        <nav className="navbar navbar-expand-lg navheader">    
-          <div className="collapse navbar-collapse" >    
-            <ul className="navbar-nav mr-auto">    
-              <li className="nav-item">    
-                <Link to={'/Login'} className="nav-link">Login</Link>    
-              </li>    
-              <li className="nav-item">    
-                <Link to={'/Signup'} className="nav-link">Sign Up</Link>    
-              </li>    
-               
-            </ul>    
-          </div>    
-        </nav> <br />    
+      <div className="container">        
         <Switch>    
           <Route exact path='/Login' component={Login} />    
           <Route path='/Signup' component={Reg} />    
@@ -35,8 +22,7 @@ class App extends React.Component {
         </Switch>  
       </div>    
     </Router>   
-  )
-  }
+  );  }
 }  
   
 export default App;  
