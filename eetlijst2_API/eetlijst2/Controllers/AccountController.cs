@@ -3,6 +3,7 @@ using eetlijst2.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace eetlijst2.Controllers
@@ -20,8 +21,9 @@ namespace eetlijst2.Controllers
             _accountLogic = accountLogic;
             _loginService = loginService;
         }
-
+        
         [HttpGet("/api/[controller]/{id}")]
+        [Authorize(Roles = "Admin")]
         public Account Get(int id)
         {
             return _accountLogic.getAccountById(id);
@@ -31,11 +33,13 @@ namespace eetlijst2.Controllers
         [HttpPost("/api/[controller]/login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [AllowAnonymous]
         public ActionResult<QueryFeedback> Post([FromBody] Account account)
         {
-            if (!ModelState.IsValid) return BadRequest("Invalid model");
-            var token = _loginService.Login(account);
-            if (token == null) return BadRequest("Authentication Error");
+//            if (!ModelState.IsValid) return BadRequest("Invalid model");
+            var token =  _loginService.Login(account).Result;
+            if (token == null) 
+                return BadRequest("Authentication Error");
             HttpContext.Session.SetString("JWToken", token);
             return Ok(token);
         }

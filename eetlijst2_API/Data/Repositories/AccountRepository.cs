@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Data.Contexts;
 using Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace Data.Repositories
@@ -59,11 +60,11 @@ namespace Data.Repositories
 
         public async Task<Account> Authenticate(Account account)
         {
-            var loggedInAccount = await Task.Run(() => 
-                _mauroContext.Account.FirstOrDefault(s => s.Username == account.Username 
-                                                          & s.Password == account.Password));
+             var loggedInAccount = 
+                 await  _mauroContext.Account.Where(s => s.Username == account.Username 
+                                                          && s.Password == account.Password).FirstOrDefaultAsync();
 
-            if (loggedInAccount == null)
+            if (loggedInAccount == default)
                 return null;
 
             loggedInAccount.Password = null;

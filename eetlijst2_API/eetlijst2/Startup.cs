@@ -55,7 +55,8 @@ namespace eetlijst2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            
+            services.AddOptions();
+
             // Je voegt de database toe (de context)
             services.AddDbContext<mauro_sqlContext>(options =>
             {
@@ -75,7 +76,6 @@ namespace eetlijst2
                         break; }
             });
             
-            services.AddOptions();
             
             //Authentication
             services.Configure<JwtConfiguration>(Configuration.GetSection(nameof(JwtConfiguration)));
@@ -115,12 +115,12 @@ namespace eetlijst2
             
             // Je voegt de services toe aan de services collectie voor dependency injection
             // Je mapt eigenlijk de interfaces tegen de implementaties aan. (om het net te doen)
-            
-            services.AddSingleton<IAccountRepository, AccountRepository>();
-            services.AddSingleton<IAccountLogic, AccountLogic>();
-            services.AddSingleton<ILoginService, LoginService>();
-            services.AddSingleton<IStudenthouseLogic, StudenthouseLogic>();
-            services.AddSingleton<IStudenthouseContext, StudenthouseRepository>();
+
+            services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<IAccountLogic, AccountLogic>();
+            services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IStudenthouseLogic, StudenthouseLogic>();
+            services.AddTransient<IStudenthouseContext, StudenthouseRepository>();
             
             
             
