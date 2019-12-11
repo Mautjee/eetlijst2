@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Model;
@@ -22,6 +23,7 @@ namespace eetlijst2.Controllers
         [HttpGet("studenthouse")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "User")]
         public ActionResult<List<Studenthouse>> GetAllStudenthouses()
         {
            

@@ -34,7 +34,7 @@ namespace eetlijst2.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [AllowAnonymous]
-        public ActionResult<QueryFeedback> Post([FromBody] Account account)
+        public ActionResult<String> Post([FromBody] Account account)
         {
 //            if (!ModelState.IsValid) return BadRequest("Invalid model");
             var token =  _loginService.Login(account).Result;
